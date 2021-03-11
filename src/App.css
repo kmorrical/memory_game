@@ -2,37 +2,88 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: rgb(228,233,19);
+  background: linear-gradient(333deg, rgba(228,233,19,1) 0%, rgba(163,221,14,1) 35%, rgba(0,99,255,1) 100%);
+  height: 160px;
+  text-align: left;
+  font-size: 64px;
+  font-family: 'Rajdhani', sans-serif;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header-text{
+  padding: 75px 0 0 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.usersposts-div{
+  height: 500px;
+  min-width: 300px;
+  width: 45%;
+  position: relative;
+  margin-bottom: 150px;
+}
+
+.posts-holder{
+  margin-top: 24px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.posts_header{
+  background-color: white;
+  color: rgb(6, 158, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(6, 158, 247);
+}
+
+.posts_body{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  height: 500px;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(6, 158, 247);
+  overflow:scroll;
+}
+
+.post_container{
+  text-align: left;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 12px;
+}
+
+.post_title {
+  font-size: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  color: #00cc00;
+}
+
+.post_error {
+  font-size: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  color: red;
+}
+
+.post_user_img {
+  width: 20px;
+  height: auto;
+  float: left;
+
+}
+
+.post_hr {
+  border-top: 1px solid;
 }
