@@ -1,69 +1,40 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React from 'react'
 import './App.css'
-import fetchPostsAction from './fetchPosts'
+import swal from 'sweetalert'
+import CardRows from './components/CardRows'
 import Header from './components/Header'
-import PostsSection from './components/PostsSection'
+import { useDispatch } from 'react-redux'
+import { fetchCards } from './fetchCards'
 
-const mapStateToProps = state => {
-  const posts = state.reducer.posts
-  const error = state.reducer.error
-  const loading = state.reducer.loading
-  const userPosts = state.reducer.userPosts
-  const myPosts = state.reducer.myPosts
-  return {
-    posts: posts,
-    loading: loading,
-    userPosts: userPosts,
-    myPosts: myPosts,
-    error: error
-  }
-}
+function App () {
+  const dispatch = useDispatch()
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchPosts: fetchPostsAction
-    },
-    dispatch
-  )
-
-class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      loading: true,
-      posts: [],
-      userPosts: this.props.userPosts,
-      myPosts: this.props.myPosts
-    }
+  const shuffle = () => {
+    dispatch(fetchCards())
   }
 
-  componentWillMount () {
-    const { fetchPosts } = this.props
-    fetchPosts()
-  }
-
-  shouldComponentUpdate (nextProps, nextState) {
-    if (nextProps.posts !== this.props.posts) {
-      return true
-    }
-  }
-
-  render () {
-    return (
-      <div className='App'>
-        <Header/>
-        <PostsSection
-          myPosts={this.props.myPosts}
-          userPosts={this.props.userPosts}
-          loading={this.props.loading}
-          error={this.props.error}
-        ></PostsSection>
-      </div>
+  const fireDirections = () => {
+    swal(
+      'Instructions',
+      'Click to flip over a card. Flip over two cards and see if they match. They must be the same exact card (suit and number). If they do not, they will flip back over. If they do, they will disappear. Play until all cards disappear.',
+      'success'
     )
   }
+
+  return (
+    <div className='App'>
+      <Header />
+      <button type='button' className='btn-darkred' onClick={shuffle}>
+        Start New Game
+      </button>
+      <button type='button' className='btn-darkred' onClick={fireDirections}>
+        How to Play
+      </button>
+      <div>
+        <CardRows />
+      </div>
+    </div>
+  )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

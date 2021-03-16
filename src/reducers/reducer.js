@@ -1,42 +1,47 @@
-import {FETCH_POSTS_LOADING, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR} from '../actions/action';
+import {
+  FETCH_CARDS_SUCCESS,
+  FETCH_CARDS_ERROR,
+  MATCH_CARDS,
+  CLEAR_CARDS
+} from '../actions/action'
 
 const initialState = {
-  loading: false,
-  posts: [],
-  userPosts: [],
-  myPosts: [],
+  cards: [],
+  matchedPairs: 0,
   error: null
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
-    switch (action.type) {
-     case FETCH_POSTS_LOADING:
+  switch (action.type) {
+    case FETCH_CARDS_SUCCESS:
       return {
         ...state,
-        loading: true
+        cards: action.cards,
+        matchedPairs: 0
       }
-      case FETCH_POSTS_SUCCESS:
-        const userPosts = action.posts.filter(function (item) {
-          return item.userId !== 1;
-        });
-        const myPosts = action.posts.filter(function (item) {
-          return item.userId === 1;
-        });
-        return {
-          ...state,
-          loading: false,
-          posts: action.posts,
-          userPosts: userPosts,
-          myPosts: myPosts
-        }
-      case FETCH_POSTS_ERROR:
-        return {
-          ...state,
-          loading: false,
-          error: action.error
-        }
-     default:
+    case CLEAR_CARDS:
+      return {
+        ...state,
+        cards: action.cards
+      }
+    case FETCH_CARDS_ERROR:
+      return {
+        ...state,
+        error: action.error
+      }
+    case MATCH_CARDS:
+      const newMatch = state.matchedPairs + 1
+      let cardsCopy = state.cards.slice()
+      cardsCopy[action.id1].isMatched = true
+      cardsCopy[action.id2].isMatched = true
+      cardsCopy = newMatch === 12 ? [] : cardsCopy
+      return {
+        ...state,
+        matchedPairs: newMatch,
+        cards: cardsCopy
+      }
+    default:
       return state
-    }
   }
-
+}

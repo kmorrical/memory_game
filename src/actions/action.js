@@ -1,24 +1,33 @@
-export const FETCH_POSTS_LOADING = 'FETCH_POSTS_LOADING'
-export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
-export const FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR'
+export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS'
+export const FETCH_CARDS_ERROR = 'FETCH_CARDS_ERROR'
+export const MATCH_CARDS = 'MATCH_CARDS'
+export const CLEAR_CARDS = 'CLEAR_CARDS'
 
-export function fetchPostsLoading () {
+export function fetchCardsSuccess (cards) {
   return {
-    type: FETCH_POSTS_LOADING,
-    loading: true
+    type: FETCH_CARDS_SUCCESS,
+    cards: cards
   }
 }
 
-export function fetchPostsSuccess (posts) {
+export function clearCards () {
   return {
-    type: FETCH_POSTS_SUCCESS,
-    posts: posts
+    type: CLEAR_CARDS,
+    cards: []
   }
 }
 
-export function fetchPostsError (error) {
+export function fetchCardsError (error) {
   return {
-    type: FETCH_POSTS_ERROR,
+    type: FETCH_CARDS_ERROR,
     error: error
+  }
+}
+
+export function matchCards (id1, id2) {
+  return {
+    type: MATCH_CARDS,
+    id1: id1,
+    id2: id2
   }
 }

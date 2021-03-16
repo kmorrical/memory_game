@@ -3,87 +3,168 @@
 }
 
 .App-header {
-  background: rgb(228,233,19);
-  background: linear-gradient(333deg, rgba(228,233,19,1) 0%, rgba(163,221,14,1) 35%, rgba(0,99,255,1) 100%);
-  height: 160px;
+  background: rgb(2,0,36);
+  background: linear-gradient(137deg, rgba(2,0,36,1) 13%, rgba(121,9,9,1) 49%, rgba(255,0,0,1) 85%);
+  height: 100px;
   text-align: left;
   font-size: 64px;
   font-family: 'Rajdhani', sans-serif;
   color: white;
+  width: 100%;
 }
 
 .header-text{
-  padding: 75px 0 0 20px;
+  padding: 20px 0 0 20px;
 }
 
-.usersposts-div{
-  height: 500px;
-  min-width: 300px;
-  width: 45%;
-  position: relative;
-  margin-bottom: 150px;
-}
-
-.posts-holder{
-  margin-top: 24px;
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.posts_header{
-  background-color: white;
-  color: rgb(6, 158, 247);
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 20px;
-  font-family: 'Rajdhani', sans-serif;
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 5px;
-  border-color: rgb(6, 158, 247);
-}
-
-.posts_body{
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 20px;
-  height: 500px;
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 5px;
-  border-color: rgb(6, 158, 247);
-  overflow:scroll;
-}
-
-.post_container{
-  text-align: left;
-  margin-left: 12px;
-  margin-right: 12px;
-  margin-bottom: 12px;
-}
-
-.post_title {
-  font-size: 20px;
-  font-family: 'Rajdhani', sans-serif;
-  color: #00cc00;
-}
-
-.post_error {
-  font-size: 20px;
-  font-family: 'Rajdhani', sans-serif;
-  color: red;
-}
-
-.post_user_img {
-  width: 20px;
+.card_img {
   height: auto;
-  float: left;
-
+  width: 80px;
+  text-align: center;
 }
 
-.post_hr {
-  border-top: 1px solid;
+.single_card {
+  height: auto;
+  width: 90px;
+  margin: 10px;
+  text-align: center;
+}
+
+.card_row_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-darkred {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.swal-button{
+  left: 50%;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.item {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.card_image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card_image_animation {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  -webkit-animation: fadein .2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein .2s; /* Firefox < 16 */
+  -ms-animation: fadein .2s; /* Internet Explorer */
+  -o-animation: fadein .2s; /* Opera < 12.1 */
+  animation: fadein .2s;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes fadein {
+  from {left: -100%; opacity: 0;}
+  to {left: 0%; opacity: 1;}
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from {left: -100%; opacity: 0;}
+  to {left: 0%; opacity: 1;}
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from {left: -100%; opacity: 0;}
+  to {left: 0%; opacity: 1;}
+}
+
+@keyframes colorchange
+{
+  0% {background: red;}
+  50% {background: black;}
+  100% {background: red;}
+}
+
+@-moz-keyframes colorchange
+{
+  0% {background: red;}
+  50% {background: black;}
+  100% {background: red;}
+}
+
+@-webkit-keyframes colorchange {
+  0% {background: red;}
+  50% {background: black;}
+  100% {background: red;}
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from {left: -100%; opacity: 0;}
+  to {left: 0%; opacity: 1;}
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+  from {left: -100%; opacity: 0;}
+  to {left: 0%; opacity: 1;}
+}
+
+@media screen and (min-width: 0px) and (max-width: 479px) {
+  .single_card {
+    height: auto;
+    width: 52px;
+    margin: 2px;
+  }
+  .btn-darkred {
+    margin-right: 0px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 1023px) {
+  .single_card {
+    height: auto;
+    width: 100px;
+    margin: 5px;
+  }
+}
+
+@media screen and (min-width : 1024px) and (max-width: 1024px) {
+  .single_card {
+    height: auto;
+    width: 150px;
+    margin: 10px;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 5000px) {
+  .single_card {
+      height: auto;
+      width: 100px;
+      margin: 10px;
+    }
 }

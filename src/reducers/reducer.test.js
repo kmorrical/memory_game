@@ -1,62 +1,75 @@
-import reducer from './reducer';
-import {FETCH_POSTS_LOADING, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR} from '../actions/action';
+import reducer from './reducer'
+import {
+  FETCH_CARDS_SUCCESS,
+  FETCH_CARDS_ERROR,
+  MATCH_CARDS
+} from '../actions/action'
 
 const mockState = {
-    loading: false,
-    posts: [],
-    userPosts: [],
-    myPosts: [],
-    error: null
-  }
-  
-  describe('my reducer', () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-    });
-  
-    it('tests fetch posts success', () => {
-      const action = {
-        type: FETCH_POSTS_SUCCESS,
-        posts: [{userId: 1, title: "hello"}, {userId: 2, title: "aloha"}]
-      };
-  
-      expect(reducer(mockState, action)).toEqual({
-        ...mockState,
-        posts: [{userId: 1, title: "hello"}, {userId: 2, title: "aloha"}],
-        myPosts: [{userId: 1, title: "hello"}],
-        userPosts: [{userId: 2, title: "aloha"}]
-      });
-    });
-  
-    it('tests fetch posts loading', () => {
-      const action = {
-        type: FETCH_POSTS_LOADING,
-        loading: true
-      };
-  
-      expect(reducer(mockState, action)).toEqual({
-        ...mockState,
-        loading: true
-      });
-    });
-  
-    it('tests fetch posts error', () => {
-      const action = {
-        type: FETCH_POSTS_ERROR,
-        error: "doesn't work"
-      };
-  
-      expect(reducer(mockState, action)).toEqual({
-        ...mockState,
-        error: "doesn't work"
-      });
-    });
+  cards: [],
+  error: null,
+  matchedPairs: 0
+}
 
-    it('default returns state', () => {
-        const action = {};
-        expect(reducer(mockState, action)).toEqual({
-          ...mockState,
-        });
-      });
-  });
-  
+const mockState2 = {
+  cards: [
+    { code: '5S', isMatched: false },
+    { code: 'KS', isMatched: false }
+  ],
+  error: null,
+  matchedPairs: 0
+}
+
+describe('my reducer', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('tests fetch cards success', () => {
+    const action = {
+      type: FETCH_CARDS_SUCCESS,
+      cards: [{ code: '5S' }, { code: 'KS' }]
+    }
+
+    expect(reducer(mockState, action)).toEqual({
+      ...mockState,
+      cards: [{ code: '5S' }, { code: 'KS' }]
+    })
+  })
+
+  it('tests fetch cards error', () => {
+    const action = {
+      type: FETCH_CARDS_ERROR,
+      error: "doesn't work"
+    }
+
+    expect(reducer(mockState, action)).toEqual({
+      ...mockState,
+      error: "doesn't work"
+    })
+  })
+
+  it('tests match cards', () => {
+    const action = {
+      type: MATCH_CARDS,
+      id1: '0',
+      id2: '1'
+    }
+
+    expect(reducer(mockState2, action)).toEqual({
+      ...mockState2,
+      cards: [
+        { code: '5S', isMatched: true },
+        { code: 'KS', isMatched: true }
+      ],
+      matchedPairs: 1
+    })
+  })
+
+  it('default returns state', () => {
+    const action = {}
+    expect(reducer(mockState, action)).toEqual({
+      ...mockState
+    })
+  })
+})

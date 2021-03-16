@@ -1,7 +1,7 @@
 export const Header = () => {
   return (
     <header className='App-header'>
-      <div className='header-text'>Blogtastic</div>
+      <div className='header-text'>Memory Game</div>
     </header>
   )
 }
